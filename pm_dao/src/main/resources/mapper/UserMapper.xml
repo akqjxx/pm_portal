@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.etcom.dao.user.UserDao" >
+  <sql id="BASE_TABLE">
+    userss 
+  </sql>
+
+  <sql id="BASE_COLUMN">
+    userId,userName,password,phone,ctm,sex
+  </sql>
+
+  <insert id="insert" parameterType="cn.etcom.entity.model.user.UserDomain">
+    INSERT INTO
+      <include refid="BASE_TABLE"/>
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      userName,password,
+      <if test="phone != null">
+        phone,
+      </if>
+      <if test="phone != null">
+        ctm,
+      </if>      
+    </trim>
+    <trim prefix="VALUES(" suffix=")" suffixOverrides=",">
+      #{userName, jdbcType=VARCHAR},#{password, jdbcType=VARCHAR},
+      <if test="phone != null">
+        #{phone, jdbcType=VARCHAR},
+      </if>
+      <if test="ctm != null">
+        #{ctm, jdbcType=TIMESTAMP},
+      </if>      
+    </trim>
+  </insert>
+
+  <select id="selectUsers" resultType="cn.etcom.entity.model.user.UserDomain">
+      SELECT
+        <include refid="BASE_COLUMN"/>
+      FROM
+        <include refid="BASE_TABLE"/>
+  </select>
+
+
+</mapper>
