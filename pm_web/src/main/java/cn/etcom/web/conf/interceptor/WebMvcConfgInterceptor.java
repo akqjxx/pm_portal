@@ -11,6 +11,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
@@ -100,5 +101,16 @@ public class WebMvcConfgInterceptor  implements WebMvcConfigurer{
         //5.将convert添加到converters当中.
         converters.add(fastJsonHttpMessageConverter);
         WebMvcConfigurer.super.configureMessageConverters(converters); 
+	}
+	/**
+	 * 跨域操作
+	 */
+	@Override
+	public void addCorsMappings(CorsRegistry registry) {
+	    registry.addMapping("/**")
+			    .allowedOrigins("*")
+		        .allowedMethods("GET", "HEAD", "POST","PUT", "DELETE", "OPTIONS")
+		        .allowCredentials(false).maxAge(3600);
+		WebMvcConfigurer.super.addCorsMappings(registry);
 	}
 }
