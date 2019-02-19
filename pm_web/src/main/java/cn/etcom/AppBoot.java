@@ -7,6 +7,7 @@ import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import cn.etcom.web.conf.properties.PropertiesListener;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 /**
@@ -21,7 +22,9 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableTransactionManagement(order=10)
 public class AppBoot {
 	public static void main(String[] args) {
-		SpringApplication.run(AppBoot.class, args);
+		  SpringApplication application = new SpringApplication(AppBoot.class);
+		  application.addListeners(new PropertiesListener("mvc-redirect.properties"));
+	      application.run(args);
 	}
 }
 

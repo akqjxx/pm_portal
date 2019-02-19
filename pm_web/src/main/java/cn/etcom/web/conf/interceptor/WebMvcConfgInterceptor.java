@@ -3,6 +3,9 @@ package cn.etcom.web.conf.interceptor;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;
@@ -16,6 +19,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.alibaba.fastjson.support.config.FastJsonConfig;
 import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
+
+import cn.etcom.web.conf.properties.PropertiesListenerConfig;
 
 @Configuration
 public class WebMvcConfgInterceptor  implements WebMvcConfigurer{
@@ -36,10 +41,10 @@ public class WebMvcConfgInterceptor  implements WebMvcConfigurer{
 	 */
 	@Override
 	public void addViewControllers(ViewControllerRegistry registry) {
-		registry.addViewController("/usr/add")
-		        .setViewName("user/add");
-		registry.addViewController("/usr/update")
-		        .setViewName("user/update");
+		Map<String,String> map = PropertiesListenerConfig.getAllProperty();
+        map.entrySet().stream().forEach((x)->{
+			registry.addViewController(x.getKey()).setViewName(x.getValue());
+		});
 		WebMvcConfigurer.super.addViewControllers(registry);
 	}
 	/**

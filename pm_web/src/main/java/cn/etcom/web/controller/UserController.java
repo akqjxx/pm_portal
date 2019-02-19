@@ -24,7 +24,7 @@ import cn.etcom.service.user.UserService;
 import io.swagger.annotations.Api;
 
 /**
- * Created by Administrator on 2017/8/16.
+ * Created by Administrator 
  */
 @Api(tags="系统测试")
 @RestController
