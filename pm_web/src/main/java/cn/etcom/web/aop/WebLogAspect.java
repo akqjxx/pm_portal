@@ -23,10 +23,10 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 
-import cn.etcom.annotation.LogControllerAnnotation;
 import cn.etcom.entity.SystemLog;
 import cn.etcom.entity.model.ResponseObject;
-import cn.etcom.service.log.SystemLogService;
+import cn.etcom.service.ipcc.log.SystemLogService;
+import cn.etcom.util.annotation.LogControllerAnnotation;
 import cn.etcom.util.enums.ActionEnum;
 import cn.etcom.util.log.LoggerUtils;
 import lombok.Data;
@@ -49,7 +49,7 @@ public class WebLogAspect {
 	/***
 	 * 定义controller切入点拦截规则，拦截LogControllerAnnotation注解的方法
 	 */
-	@Pointcut("@annotation(com.winterchen.conf.annotation.LogControllerAnnotation)")
+	@Pointcut("@annotation(cn.etcom.util.annotation.LogControllerAnnotation)")
 	public void controllerAspect() {
 	}
 

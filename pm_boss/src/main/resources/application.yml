@@ -1,5 +1,5 @@
 server:
-  port: 8090
+  port: 9060
   servlet:
     context-path: /    session:      timeout: 60
   connection-timeout: 82000
@@ -10,10 +10,10 @@ spring:
     datasource:
         type: com.alibaba.druid.pool.DruidDataSource
         druid:
-          url: jdbc:postgresql://192.168.0.120:5432/ipcc
+          url: jdbc:sqlserver://192.224.2.22;DatabaseName=etcom_v9
           username: etcom
           password: etcom
-          driverClassName: org.postgresql.Driver
+          driverClassName: com.microsoft.sqlserver.jdbc.SQLServerDriver
           name: ipcc
                           #连接池建立时创建的初始化连接数
           initialSize: 5
@@ -58,7 +58,7 @@ mybatis:
 
 #pagehelper
 pagehelper:
-    helperDialect: postgresql
+    helperDialect: sqlserver
     reasonable: true
     supportMethodsArguments: true
     params: count=countSql

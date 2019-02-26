@@ -20,7 +20,7 @@ import com.github.pagehelper.PageInfo;
 
 import cn.etcom.entity.model.ResponseObject;
 import cn.etcom.entity.model.user.UserDomain;
-import cn.etcom.service.user.UserService;
+import cn.etcom.service.ipcc.user.UserService;
 import io.swagger.annotations.Api;
 
 /**
@@ -35,7 +35,14 @@ public class UserController {
     private UserService userService;
     
     private static final Logger logger = LoggerFactory.getLogger(UserController.class);
-
+    @RequestMapping("/hello")
+    public String a()
+    {
+    	System.err.println("9999999999999999999999999999999999999999999");
+    	int i = 1/0;
+    	
+    	return "user/add";
+    }
     @PostMapping("/addUser")
     //@LogControllerAnnotation(action=ActionEnum.ADD,desc="用户新增")
     public ResponseObject addUser(@RequestBody @Valid UserDomain user,  BindingResult  bindingResult){
